@@ -1,10 +1,12 @@
 import * as React from 'react';
 import './App.css';
 import UserInputs from '../UserInputs/UserInputs';
+import Hash from '../Hash/Hash';
 import { Blowfish } from 'javascript-blowfish';
 
 export interface AppState {
   inputs: any;
+  hash: string;
 }
 
 class App extends React.Component<{}, AppState> {
@@ -15,8 +17,9 @@ class App extends React.Component<{}, AppState> {
       inputs: {
         login: '',
         pass: '',
-        secretKey: 's'
-      }
+        secretKey: ''
+      },
+      hash: ''
     };
   }
 
@@ -27,23 +30,37 @@ class App extends React.Component<{}, AppState> {
     this.setState({
       inputs: Object.assign(this.state.inputs, inputs)
     });
-    this.encrypt();
+    if (this.state.inputs.login !== '' && this.state.inputs.pass !== '' && this.state.inputs.secretKey !== '') {
+      this.encrypt();
+    } else {
+      this.setState({
+        hash: ''
+      });
+    }
   }
 
   encrypt() {
     const bf = new Blowfish(this.state.inputs.secretKey);
     var encrypted = bf.encrypt(this.state.inputs.pass);
-    var decrypted = bf.decrypt(encrypted);
-    console.log(encrypted, decrypted);
+    // var decrypted = bf.decrypt(encrypted);
+    // console.log(encrypted, decrypted);
+    this.setState({
+      hash: encrypted
+    });
   }
 
   render() {
     return (
       <div className='App'>
-        <UserInputs
-          setVal={this.setVal.bind(this)}
-          inputs={this.state.inputs}
-        />
+        <div className='form'>
+          <UserInputs
+            setVal={this.setVal.bind(this)}
+            inputs={this.state.inputs}
+          />
+          <Hash
+            hash={this.state.hash}
+          />
+        </div>
       </div>
     );
   }

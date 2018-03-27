@@ -10,16 +10,20 @@
     "react-scripts-ts": "2.14.0"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "start": "npm-run-all -p watch-css start-js",
+    "start-js": "react-scripts-ts start",
+    "build-js": "react-scripts-ts build",
+    "build": "npm-run-all build-css build-js"
   },
   "devDependencies": {
     "@types/jest": "^22.2.2",
     "@types/node": "^9.6.0",
     "@types/react": "^16.0.41",
     "@types/react-dom": "^16.0.4",
+    "node-sass-chokidar": "^1.2.2",
+    "npm-run-all": "^4.1.2",
     "typescript": "^2.7.2"
   }
 }

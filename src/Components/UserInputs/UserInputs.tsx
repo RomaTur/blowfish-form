@@ -8,15 +8,6 @@ interface AppProps {
 }
 
 class UserInputs extends React.Component<AppProps, {}> {
-  constructor(props: AppProps) {
-    super(props);
-  }
-
-  componentDidMount() {
-
-    console.log(this.props.inputs);
-  }
-
   render() {
     return (
       <div className='UserInputs'>
