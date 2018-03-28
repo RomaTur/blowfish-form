@@ -10,15 +10,15 @@ interface AppProps {
 class UserInputs extends React.Component<AppProps, {}> {
   render() {
     return (
-      <div className='UserInputs'>
+      <div className='form__inputs'>
         <Input 
           type='login'
           name='Логин'
           setVal={this.props.setVal}
         />
         <Input 
-          type='pass'
-          name='Пароль'
+          type='hash'
+          name='Hash'
           setVal={this.props.setVal}
         />
         <Input 

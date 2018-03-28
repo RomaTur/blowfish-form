@@ -26,7 +26,7 @@ class Input extends React.Component<UserInputsProps, {value: string}> {
   render() {
     return (
       <div className='form__input'>
-        <h6 className='form__input-title'>{this.props.name}</h6>
+        {/* <h6 className='form__input-title'>{this.props.name}:</h6> */}
         <input
           className='form__input-area'
           placeholder={this.props.name}

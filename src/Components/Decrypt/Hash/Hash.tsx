@@ -4,7 +4,7 @@ import './Hash.css';
 class Hash extends React.Component<{hash: string}, {}> {
   render() {
     return (
-      <div>
+      <div className='form__hash'>
         <p>
           {this.props.hash}
         </p>
