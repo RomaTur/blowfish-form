@@ -13,12 +13,20 @@
     "start-js": "react-scripts-ts start",
     "build-js": "react-scripts-ts build",
     "build-web": "npm-run-all build-css build-js",
-    "electron": "electron .",
+    "electron": "electron ./build",
     "build-linux": "npm-run-all build-web dist",
     "dist": "build"
   },
   "build": {
     "appId": "yourappid",
+    "asar": "false",
+    "files": [
+      {
+        "from": "./build/",
+        "to": "./",
+        "filter": ["**/*"]
+      }
+    ],
     "linux": {
       "target": [
         "AppImage"
