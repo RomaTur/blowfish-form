@@ -1,30 +1,50 @@
 {
-  "name": "blowfish-form",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "electron": "^1.8.4",
-    "javascript-blowfish": "^1.0.4",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-scripts-ts": "2.14.0",
-    "sha256": "^0.2.0"
-  },
+  "name": "blowfish",
+  "version": "1.0.0",
+  "description": "Decrypt + Encrypt",
+  "main": "electron_process.js",
+  "homepage": "./",
   "scripts": {
+    "start": "npm-run-all -p watch-css start-js",
+    "start-electron": "npm-run-all -p start electron-dev",
+    "electron-dev": "ELECTRON_START_URL=http://localhost:3000 electron .",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-    "start": "npm-run-all -p watch-css start-js",
     "start-js": "react-scripts-ts start",
     "build-js": "react-scripts-ts build",
-    "build": "npm-run-all build-css build-js"
+    "build-web": "npm-run-all build-css build-js",
+    "electron": "electron .",
+    "build-linux": "npm-run-all build-web dist",
+    "dist": "build"
   },
+  "build": {
+    "appId": "yourappid",
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
+    }
+  },
+  "author": "Roman Turusov <mr.romatur@gmail.com>",
+  "repository": "pastahito/electron-react-webpack",
+  "license": "WTFPL",
   "devDependencies": {
     "@types/jest": "^22.2.2",
     "@types/node": "^9.6.0",
     "@types/react": "^16.0.41",
     "@types/react-dom": "^16.0.4",
-    "node-sass-chokidar": "^1.2.2",
+    "electron": "^1.8.2",
+    "electron-builder": "^20.8.1",
     "npm-run-all": "^4.1.2",
-    "typescript": "^2.7.2"
+    "typescript": "^2.7.2",
+    "react-scripts-ts": "2.14.0",
+    "node-sass-chokidar": "^1.2.2"
+  },
+  "dependencies": {
+    "electron-reload": "^1.2.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "javascript-blowfish": "^1.0.4",
+    "sha256": "^0.2.0"
   }
 }
